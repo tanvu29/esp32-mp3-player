@@ -213,10 +213,6 @@ void setup() {
     while (true) delay(1000);
   }
 
-  // AudioPlayer setup
-  player->setMetadataCallback(printMetaData);
-  player->begin();
-
   // Initial volume
   player->setVolume(volume / 100.0f);
 
