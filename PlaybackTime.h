@@ -21,6 +21,3 @@ private:
   AudioStream &target;
   uint64_t pcmBytesWritten = 0;
 };
-
-// Works with AudioSourceSDFAT<SdFs, FsFile>.
-uint32_t mp3DurationSeconds(SdFs &sd, const char *path);
