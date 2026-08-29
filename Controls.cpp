@@ -72,7 +72,7 @@ int Controls::getRotation() {
 
   interrupts();
 
-  return detents;
+  return detents * -1;
 }
 
 // Button state machine

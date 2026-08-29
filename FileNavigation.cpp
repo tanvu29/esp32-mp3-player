@@ -220,12 +220,12 @@ bool FileNavigation::move(int direction) {
   return false;
 }
 
-bool FileNavigation::select() {
+SelectResult FileNavigation::select() {
   // Case 1: selecting a directory
   if (_currentBrowserEntry.isDirectory) {
     if (_depth >= MAX_DIRECTORY_DEPTH) {
       Serial.println("[E] FileNavigation::select: maximum directory depth reached");
-      return false;
+      return SelectResult::NONE;
     }
 
     // Save where we are in the parent directory before entering child directory
@@ -236,15 +236,16 @@ bool FileNavigation::select() {
 
     if (!buildPath(_currentBrowserEntry.name, newPath, sizeof(newPath))) {
       Serial.println("[E] FileNavigation::select: could not build directory path");
-      return false;
+      return SelectResult::NONE;
     }
 
     // Enter child directory
     if (!openDirectory(newPath)) {
       Serial.print("[E] FileNavigation::select: could not open directory: ");
       Serial.println(newPath);
-      return false;
+      return SelectResult::NONE;
     }
+    
     _depth++;
 
     // Check that child directory is not empty
@@ -253,18 +254,20 @@ bool FileNavigation::select() {
 
       // Return to parent directory, revert depth
       back();
-      return false;
+      return SelectResult::NONE;
     }
 
-    return true;
+    return SelectResult::DIRECTORY_ENTERED;
   }
   
   // Case 2: selecting an MP3
   if (isMP3(_currentBrowserEntry.name)) {
-    return loadSong();
+    if (loadSong()) {
+      return SelectResult::SONG_SELECTED;
+    }
   }
 
-  return false;
+  return SelectResult::NONE;
 }
 
 bool FileNavigation::back() {
@@ -330,7 +333,7 @@ bool FileNavigation::previousSong() {
     // We've reached the end of the directory without finding an MP3
     if (!openPreviousEntry()) {
       // Restore cursor position to loaded song
-      if (!_entry.open(&_directory, originalIndex, O_RDONLY)) {
+      if (_entry.open(&_directory, originalIndex, O_RDONLY)) {
         updateCurrentEntry();
       }
       return false;

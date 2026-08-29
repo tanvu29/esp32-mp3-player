@@ -16,18 +16,17 @@ void Display::begin() {
   }
 }
 
-void Display::update() {
+void Display::refresh() {
   unsigned long now = millis();
 
   if (now - _lastDisplayUpdate < REFRESH_MS) return;
   
   _lastDisplayUpdate = now;
 
-
   // Update scrolling line for either row
   for (int row = 0; row < LCD_ROWS; row++) {
     ScrollState& state = _scrollState[row];
-    
+
     if (state.active) {
       updateScrollState(row);
       writeLine(row, state.window);
@@ -87,6 +86,15 @@ void Display::fitTextToLine(char *line, const char *text) {
   line[LCD_COLUMNS] = '\0';
 }
 
+void Display::clearLine(uint8_t row) {
+  resetScrollState(row);
+  _lcd.setCursor(0, row);
+
+  for (int i = 0; i < LCD_COLUMNS; i++) {
+    _lcd.print(' ');
+  }
+}
+
 void Display::updateScrollState(uint8_t row) {
   // Get the scrolling state for this LCD row
   // Contains the message, current scroll position, and time of last update
@@ -133,11 +141,25 @@ void Display::initScrollState(uint8_t row, const char *text) {
   ScrollState& state = _scrollState[row];
   strncpy(state.text, text, SCROLL_BUFFER_SIZE - 1);
   state.text[SCROLL_BUFFER_SIZE - 1] = '\0';
+  
   state.length = strlen(state.text);
   state.position = 0;
+
+  // Generate first LCD window immediately
+  for (int i = 0; i < LCD_COLUMNS; i++) {
+    if (i < state.length) {
+      state.window[i] = state.text[i];
+    } else {
+      state.window[i] = ' ';
+    }
+  }
+
+  state.window[LCD_COLUMNS] = '\0';
+
   state.lastScrollUpdate = millis();
   state.active = true;
-  updateScrollState(row);
+
+  writeLine(row, state.window); // display immediately
 }
 
 void Display::resetScrollState(uint8_t row) {

@@ -24,6 +24,12 @@ struct SelectedSongInfo {
   uint16_t parentDirectoryIndex = 0;
 };
 
+enum class SelectResult {
+  NONE,
+  DIRECTORY_ENTERED,
+  SONG_SELECTED
+};
+
 class FileNavigation {
 public:
   FileNavigation(AudioSourceSDFAT<SdFs, FsFile> &source);
@@ -56,7 +62,7 @@ public:
    *  true = successful
    *  false = not a directory or MP3 (some other file type)
    */
-  bool select();
+  SelectResult select();
 
   /*
    * Leave current directory and return to parent directory

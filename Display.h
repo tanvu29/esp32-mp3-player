@@ -9,21 +9,23 @@ public:
   Display(uint8_t sdaPin, uint8_t sclPin);
 
   void begin();  // Initialize I2C protocol & LCD screen
-  void update(); // Refreshes display and scrolls text when necessary
+  void refresh(); // Refreshes display and scrolls text when necessary
 
   /*
    * Display title on first row and current/total time on second row
    */
   void showPlayback(const char *title, uint32_t currentSeconds, uint32_t totalSeconds);
   
-  // TODO: 
-  // void showBrowser(const char *filename);
-
   /*
    * Display text on specified row
    * Short text is padded with spaces, long text scrolls
    */
   void showMessage(uint8_t row, const char *text);
+
+  /*
+   * Clear text on specified row
+   */
+  void clearLine(uint8_t row);
 
 private:
   uint8_t _sda;
@@ -51,7 +53,7 @@ private:
    * SCROLL_GAP reserves space for blank chars at the end of a scrolling text
   */
   static constexpr size_t LINE_BUFFER_SIZE = LCD_COLUMNS + 1;
-  static constexpr size_t SCROLL_BUFFER_SIZE = 64;
+  static constexpr size_t SCROLL_BUFFER_SIZE = 128;
   static constexpr size_t SCROLL_GAP = 4;
 
   // Scrolling requires keeping track of state changes
