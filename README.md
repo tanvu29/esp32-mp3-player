@@ -25,16 +25,15 @@ All controls are handled through a single rotary encoder that includes a built-i
 
 ## Hardware & Software
 Hardware:
-- MCU: 
-    - ESP32-DEVKITC-VE
-- Rotary encoder: 
-    - KY-040
-- DAC/AMP: 
-    - MAX98357a
-- Display: 
-    - LCD1602
-- MicroSD module  
-- Speakers
+| Component | Part |
+|:-----|:-------|
+| MCU    |   ESP32-DEVKITC-VE    |
+| Control    | KY-040      |
+| DAC/AMP    | MAX98357a     |
+| Display    | LCD1602      |
+| Storage    | MicroSD      |
+| Output    | Speakers      |
+<br>
 
 Software:
 - [SdFat by Bill Greiman](https://github.com/greiman/sdfat)
