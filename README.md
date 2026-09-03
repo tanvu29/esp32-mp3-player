@@ -5,7 +5,7 @@ A breadboard MP3 player, complete with a file system and a multi-function playba
 ![Complete breadboard build](./images/hero_image.jpeg)
 
 ## Demo
-[Check it out on Youtube!](https://www.youtube.com/watch?v=fCROvUNZGTc)
+[Check it out on Youtube!](https://youtu.be/1Ke2b3DL_yw)
 
 ## Features
 - High capacity storage support (64GB+)
