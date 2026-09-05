@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Arduino.h>
-#include <AudioTools.h>
-#include <SdFat.h>
+#include "AudioTools.h"
+#include "SdFat.h"
 
 class PlaybackProgressStream : public AudioStream {
 public:
