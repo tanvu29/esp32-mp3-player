@@ -1,0 +1,7 @@
+Component,Part # / Name,Quantity
+MCU,ESP32-DEVKITC-VE ,1
+Control,KY-040,1
+DAC/AMP,MAX98357a,2
+Display,LCD1602 (w/ I2C backpack),1
+Storage,MicroSD Module (SPI),1
+Output,4/8 Ohm Speakers,2
