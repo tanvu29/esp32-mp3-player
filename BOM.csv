@@ -1,7 +1,7 @@
-Component,Part # / Name,Quantity
-MCU,ESP32-DEVKITC-VE ,1
-Control,KY-040,1
-DAC/AMP,MAX98357a,2
-Display,LCD1602 (w/ I2C backpack),1
-Storage,MicroSD Module (SPI),1
-Output,4/8 Ohm Speakers,2
+Component,Part # / Name,Quantity,Link
+MCU,ESP32-DEVKITC-VE ,1,https://www.digikey.com/en/products/detail/espressif-systems/esp32-devkitc-ve/12091812
+Control,KY-040,1,https://www.aliexpress.us/item/3256810608835818.html?spm=a2g0o.productlist.main.9.23862834TXBr2c&algo_pvid=2a400fdf-db79-4979-aeee-8822b57fbac1&algo_exp_id=2a400fdf-db79-4979-aeee-8822b57fbac1-8&pdp_ext_f=%7B%22order%22%3A%22274%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21USD%215.39%210.99%21%21%2135.76%216.61%21%402103138417945095107765955e10c9%2112000053530093189%21sea%21US%216446045659%21X%211%210%21n_tag%3A-29919%3Bd%3A71109de9%3Bm03_new_user%3A-29895%3BpisId%3A5000000220750444&curPageLogUid=dFglaCrSofLP&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005010795150570%7C_p_origin_prod%3A
+DAC/AMP,MAX98357a,2,https://www.aliexpress.us/item/3256806882501015.html?spm=a2g0o.order_list.order_list_main.16.392d1802FeXT5x&gatewayAdapt=glo2usa
+Display,LCD1602 (w/ I2C backpack),1,https://www.aliexpress.us/item/3256808786755349.html?spm=a2g0o.productlist.main.12.240ee610QQRIvd&aem_p4p_detail=202611121052186343882223266000000242321&algo_pvid=0683d30d-447d-40b7-8482-16b8d0b22b1a&algo_exp_id=0683d30d-447d-40b7-8482-16b8d0b22b1a-11&pdp_ext_f=%7B%22order%22%3A%22369%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21USD%211.95%211.72%21%21%2112.96%2111.44%21%402101d3fe17945095387544900e0d28%2112000047419307286%21sea%21US%216446045659%21X%211%210%21n_tag%3A-29919%3Bd%3A71109de9%3Bm03_new_user%3A-29895%3BpisId%3A5000000220844609&curPageLogUid=pVrbGKelqksk&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005008973070101%7C_p_origin_prod%3A&search_p4p_id=202611121052186343882223266000000242321_3
+Storage,MicroSD Module (SPI),1,https://www.aliexpress.us/item/3256805115720436.html?spm=a2g0o.order_list.order_list_main.36.392d1802FeXT5x&gatewayAdapt=glo2usa
+Output,4/8 Ohm Speakers,2,https://www.amazon.com/DWEII-Loundspeaker-Compatible-Motherboard-Electronic/dp/B0CX1JC6NM?crid=FX3FRK7DCG49&dib=eyJ2IjoiMSJ9.mzC9QH8OVNWQYxjAPyKIbFajseswQgGFHJn-UYv7QjP_2wA-dMgs5ZL8hn5NhxBeOJGgI_LWhBDHEZ9QubUNdjq7qLf9ygtf3aSB_nIJvbIH9l_11f7NFVKEcMRIhtOGXY2V7mLEuNxAWYsKsHwNEStqrfRKd81D-VhPBaWCx8q9Hi6x6HkLPxma4EgNXGgMaUrF1niH7AneUdCE-ca6zqX-XDMlPZZ_zHIED9p1uYixJngs1ctB2qsKDRkMXbvnXEkKxMJ1Qn0hP2bbRqyRReWPMsgVeZgCA18BugPqWq4.N7fbJYgJYVuYQHu_UCddjvm8iCTbrx1J1BMHbF-tGpU&dib_tag=se&keywords=4pcs%2BMini%2BSpeaker%2B3W%2B8Ohm%2Bwith%2BDupont%2BInterface%2Bfor%2BArduino%2B%26%2BSmall%2BProjects&nsdOptOutParam=true&qid=1794509660&s=electronics&sprefix=4pcs%2Bmini%2Bspeaker%2B3w%2B8ohm%2Bwith%2Bdupont%2Binterface%2Bfor%2Barduino%2B%26%2Bsmall%2Bprojects%2Celectronics%2C105&sr=1-2&th=1
