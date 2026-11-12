@@ -1,6 +1,6 @@
 # ESP32 MP3 Player
 
-A simple MP3 player!
+A simple breadboard MP3 player!
 
 ![final build](./images/hero_image.jpeg)
 
@@ -10,38 +10,50 @@ A simple MP3 player!
 ## Some highlights
 - High capacity storage support (64GB+)
 - File system that lets you select songs/folders
-- Play/pause, next song, return, and volume controls
+- Play/pause, next song, return to song browser, and volume controls
 
 ## How it works
 
-### File system
-I used the Arduino SdFat library to read MP3 files stored in a microSD card. The file system  is exFAT formatted to handle large microSD sizes, since <64GB microSD cards use the older FAT32 standard.
+This is meant to be a simple music player that has as little barrier to entry as possible - it's built with relatively cheap hobbyist electronic modules, an ESP32 which is quite popular and well documented, and a breadboard.
 
-### Audio decoding
-I used Arduino Audio Tools library to decode MP3 PCM signals into raw bitstreams. Then I2S is used to send the bitstream into a hardware DAC/AMP module that sends the audio to the speakers.
+The firmware is split into four main components which are implemented via object-oriented programming:
 
-### Playback
-All controls are handled through a single rotary encoder that includes a built-in button. I used FSMs to debounce encoder turns and detect different button presses.
+1. FileNavigation: 
+<br> Lets you nagivate the contents of your storage device (microSD) using functions that calculates file paths and directory depths. It also reads MP3 metadata in order to calculate song duration.. since this is surprisingly not already stored in metadata apparently.
+
+2. Controls:
+<br> This is responsible for reading user input from the rotary encoder + the built-in button. The encoder logic is implemented using a hardware interrupts and a state transition table to keep track of its rotation. For the button, polling and debounce timers are used instead since it needs to differentiate between three different button presses (single press, double press, long press).
+
+3. Display:
+<br> Contains functions to update and refresh the LCD display. Since the LCD only shows 16 characters max in one line, long text/filenames scroll across and wrap around the screen.
+
+4. PlaybackTime:
+<br> Keeps track of the song timer essentially by counting the PCM (pulse-code modulation) bytes outputted from the MP3 decoder at a known rate. 
 
 ## Hardware components
 
 These are the parts you'll need if you want to build it! This is also listed in the BOM.
 
-| Component | Part | Qty |
+| Component | Part #/Name| Qty |
 |:-----|:-------|:-------|
 | MCU    |   ESP32-DEVKITC-VE    | 1
 | Control    | KY-040      | 1
 | DAC/AMP    | MAX98357a    | 2
 | Display    | LCD1602 (w/ I2C backpack)    | 1
-| Storage    | MicroSD Module  (SPI)   | 1
-| Output    | 4/8 Ohm Speakers      | 2
+| Storage    | microSD module  (SPI)   | 1
+| Output    | 4/8 ohm speakers      | 2
 
 ## Wiring diagram
+
+Note: some pin labels may look slightly different on the physical module (you might see a pin called LRC on the MAX98357a - I called it LRCLK since that makes the pin function clearer to me).
+
 ![wiring diagram](./images/wiring_diagram.png)
 
 ## How to flash
 
+A little setup is required if you want to flash through Arduino IDE, but the gist of it is downloading this firmware, selecting the correct settings for the ESP32 board and flash partition, and installing the dependencies.
 
+You can also skip all of that and flash directly to the ESP32 with a pre-compiled binary provided via the GitHub Release. This does require installing esptool in order to flash the binary.
 
 
 ### Option 1. Manual setup w/ Arduino IDE
@@ -65,7 +77,7 @@ These are the parts you'll need if you want to build it! This is also listed in 
 
 
 
-### Option 2. Using the pre-complied binary
+### Option 2. Using the pre-compiled binary
 1. Install [esptool](https://docs.espressif.com/projects/esptool/en/latest/esp32/):
     ```
     pip install esptool
